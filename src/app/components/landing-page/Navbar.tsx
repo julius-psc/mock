@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-6"
+      className="fixed top-0 left-0 right-0 z-20 flex justify-center px-4 py-6"
       initial={false}
       animate={{
         paddingTop: isScrolled ? '1rem' : '1.5rem',
