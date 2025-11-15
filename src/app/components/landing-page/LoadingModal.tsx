@@ -237,21 +237,22 @@ export default function LoadingModal({ onComplete, stopAfterStep }: LoadingModal
 
   // Step progression (SLOWER: 4s per step)
   useEffect(() => {
-    // Check if we should stop after a specific step
-    // When step becomes stopAfterStep + 1, that means the stopAfterStep agent just completed
-    if (stopAfterStep !== undefined && step === stopAfterStep + 1) {
-      const finalTimer = setTimeout(() => {
-        if (onComplete) onComplete();
-      }, FINAL_SCREEN_DURATION_MS);
-      return () => clearTimeout(finalTimer);
-    }
-
     // Exit if all steps are done
     if (step >= TOTAL_AGENTS) {
       const finalTimer = setTimeout(() => {
         if (onComplete) onComplete();
       }, FINAL_SCREEN_DURATION_MS); // Wait 3s after last step
       return () => clearTimeout(finalTimer);
+    }
+
+    // Check if we should stop after the current step completes
+    // When we're at stopAfterStep, we want to stop immediately after this step's duration
+    if (stopAfterStep !== undefined && step === stopAfterStep) {
+      // This is the last step we want to show, so wait for it to complete, then call onComplete immediately
+      const stepTimer = setTimeout(() => {
+        if (onComplete) onComplete();
+      }, STEP_DURATION_MS);
+      return () => clearTimeout(stepTimer);
     }
 
     // This timer progresses to the next step

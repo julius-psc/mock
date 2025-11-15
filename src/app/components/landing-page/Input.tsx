@@ -26,10 +26,8 @@ export default function Input() {
 
   const handleLoadingComplete = () => {
     setShowLoading(false);
-    // Navigate to PivotEnhance page after Analyst stops (step 0 completes)
-    setTimeout(() => {
-      router.push('/pivot-enhance');
-    }, 500);
+    // Navigate to PivotEnhance page immediately after Analyst stops
+    router.push('/pivot-enhance');
   };
 
   return (
