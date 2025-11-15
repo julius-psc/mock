@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import LoadingModal from '@/app/components/dashboard/LoadingModal';
+import LoadingModal from '@/app/components/landing-page/LoadingModal';
 import PivotEnhance from '@/app/components/dashboard/PivotEnhance';
 import { Button } from '@/components/ui/button';
 
@@ -45,11 +45,7 @@ export default function DemoPage() {
             Note: Close the loading modal with the X button, or wait - it will redirect to /dashboard/projects/analyst
           </p>
 
-          <LoadingModal
-            isOpen={showLoading}
-            onClose={handleLoadingComplete}
-            projectName="AI eLearning Captioning Tool"
-          />
+          {showLoading && <LoadingModal onComplete={handleLoadingComplete} />}
         </div>
       ) : (
         <PivotEnhance
