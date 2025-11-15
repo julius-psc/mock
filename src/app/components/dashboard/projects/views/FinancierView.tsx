@@ -416,7 +416,7 @@ export default function FinancierView() {
                           style={{ width: `${Math.min(100, (ltvCacRatio / 10) * 100)}%` }}
                         ></div>
                       </div>
-                      <span className="text-green-400 w-12 text-right">{Math.min(10, ltvCacRatio.toFixed(1))}/10</span>
+                      <span className="text-green-400 w-12 text-right">{Math.min(10, ltvCacRatio).toFixed(1)}/10</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between text-sm">
